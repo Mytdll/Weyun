@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html><head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">  
+	    <title>Weyun-Register</title>
+    
+	    <link href="../static/login_files/css.css" rel="stylesheet">
+	    <link href="../static/login_files/bootstrap.css" rel="stylesheet">
+	    <link href="../static/login_files/font-awesome.css" rel="stylesheet">
+	    <link href="../static/login_files/templatemo-style.css" rel="stylesheet">
+        <link href="../static/login_files/style.css" rel="stylesheet">
+		<link href="../static/login_files/normalize.css" rel="stylesheet">
+
+		<link href="../static/bootstrap/css/bootstrap.css" rel="stylesheet">
+		<script src="../static/jquery-3.3.1.js"></script>
+		<script src="../static/bootstrap/js/bootstrap.js"></script>
+		<script type="text/javascript" src = "../static/crypto/crypto-js.js"></script>
+		
+	</head>
+	
+	
+	<body style="overflow:-Scroll;overflow-y:hidden;"> 
+		<section id="slider">
+			<div class="single-slider">
+				<div id="particles-js">
+					
+				<canvas class="particles-js-canvas-el" style="width: 100%; height: 100%;"></canvas></div>
+				<!--登陆窗口-->
+				<div class="templatemo-content-widget templatemo-login-widget white-gray-bg">
+	       			<form action="" method="post">
+						{% csrf_token %}
+						<center>
+	          				<h1 style=" font-family: 'Viner Hand ITC', cursive; font-size:30pt">Register Weyun</h1>
+						</center>
+						<!--username输入窗-->
+	        			<div class="form-group">
+	        				<div class="input-group">
+		        				<div class="input-group-addon"><i class="fa fa-user fa-fw"></i>
+								</div>	        		
+								<input name="username" id="username" style="font-family: '书体坊安景臣钢笔行书'; font-size: 20pt; color: black; height: 40px;" class="form-control" placeholder="用户名" type="text">    
+		          			</div>	 
+						</div>
+						<br>
+						<!--password输入窗-->
+	        			<div class="form-group">
+	        				<div class="input-group">
+		        				<div class="input-group-addon"><i class="fa fa-key fa-fw"></i>
+								</div>	        		
+								<input name="password" id="password" style="font-family: '书体坊安景臣钢笔行书'; font-size: 20pt; color: black;  height: 40px;" class="form-control" placeholder="密 码" type="password">      
+							</div>
+					  	</div>
+					  	<br>
+						<!--spassword确认窗--> 
+						<div class="form-group">
+	        				<div class="input-group">
+		        				<div class="input-group-addon"><i class="fa fa-warning fa-fw"></i>
+								</div>	        		
+								<input name="repassword" id="repassword" style="font-family: '书体坊安景臣钢笔行书'; font-size: 20pt; color: black;  height: 40px;" class="form-control" placeholder="确认密码" type="password">      
+							</div>
+					  	</div>
+					  	<br>
+						<div class="form-group" style="text-align: center;color: red">
+							{{ info }}
+						</div>
+						<!--注册button-->
+						<div class="button-head">		
+						</div>
+						<div class="form-group">
+							<input type="button" class="templatemo-blue-button width-100" style="font-family: '书体坊安景臣钢笔行书'; font-size: 25pt; font-weight: 700; color: black;" onclick="check(username,password,repassword)" value="注  册">
+						</div>
+	        		</form>
+	    		</div>
+			</div>
+		</section>
+		
+		<!--js设置背景-->
+		<script src="../static/login_files/particles.js"></script>
+		<script src="../static/login_files/particle-code.js"></script>
+
+		<script>
+			function check(username,password,repassword){
+				var regex=/^[/s]+$/;
+				
+				if(regex.test(username.value)||username.value.length==0){
+					alert("用户名格式错误");
+					return false;
+				}
+				if(regex.test(password.value)||password.value.length==0){
+					alert("密码格式错误");
+					return false; 		
+				}
+				if(password.value!=repassword.value){
+					alert("前后两次密码不一致");
+					return false;
+				}
+				else{
+					generateKeys(username,password);
+				}
+			}
+
+			function bin2text(bin){return btoa(String.fromCharCode(...new Uint8Array(bin)));}
+		
+			function generateKeys(username,password){
+				var privateKey;
+				var publicKey;
+			window.crypto.subtle.generateKey({name: "RSA-OAEP",modulusLength: 1024,publicExponent: new Uint8Array([0x01, 0x00, 0x01]),hash: {name: "SHA-256"},},true, ["encrypt", "decrypt"])
+			   .then(function(key){window.crypto.subtle.exportKey("pkcs8", key.privateKey)
+			   .then(function(keydata){
+			privateKey = bin2text(keydata);
+			
+		})
+						.catch(function(err){
+							console.error(err);
+						});
+		
+				window.crypto.subtle.exportKey(
+						"spki", //can be "jwk" (public or private), "spki" (public only), or "pkcs8" (private only)
+						key.publicKey //can be a publicKey or privateKey, as long as extractable was true
+					).then(function(keydata){
+						publicKey = bin2text(keydata);
+                   		console.log("IN_register.html!!!")
+				console.log("privateKey = ",privateKey)
+				
+				
+				console.log("pwd = ",password.value)
+				console.log("pwdlength = ",password.textLength)
+		
+				var masterKey = randomString(1024);
+				console.log("masterkey = ",masterKey)
+		
+				var passwd = password.value;
+				pwdlength = password.textLength;
+			padPwd =  passwd + ''
+			for(;pwdlength<16;pwdlength++)
+				padPwd = padPwd + '0';
+			console.log(padPwd);
+		
+			var enmasterKey = Encrypt(masterKey, padPwd);
+			   
+		
+	                var enprivateKey = Encrypt(privateKey, padPwd);
+				
+			var  new_publicKey = '-----BEGIN PUBLIC KEY-----\n'+publicKey+'\n-----END PUBLIC KEY-----\n'
+		
+		
+		
+			   console.log("enmasterkey = ",enmasterKey);
+			   console.log("enprivatekey = ",enprivateKey);
+			   console.log("publicKey = ",new_publicKey)
+			   $.ajaxSetup({
+				data:{csrfmiddlewaretoken:'{{ csrf_token}}'},
+				});
+		
+			   $.ajax({
+						type:"post",//type可以为post也可以为get
+						url:"/register/",
+						data:{"csrfmiddlewaretoken":'{{ csrf_token}}', "username":username.value,"enmasterKey":enmasterKey,"enprivateKey":enprivateKey,"publicKey":new_publicKey},
+						dataType:"json",//这里要注意如果后台返回的数据不是json格式，那么就会进入到error:function(data){}中
+						success:function(){
+							window.location = "/login";
+						},
+						error:function(){
+							window.location = "/login";
+						}
+					});
+		
+		
+					})
+					  .catch(function(err){
+							console.error(err);
+						});
+		
+				})
+				.catch(function(err){
+					console.error(err);
+				});
+			   
+					 
+		}
+		
+		
+			function randomString(len){
+				len = len || 32;
+				var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+		　　      var maxPos = $chars.length;
+				var randomString = '';
+				for (i = 0; i < len; i++) {
+				randomString += $chars.charAt(Math.floor(Math.random() * maxPos));
+				}
+				return randomString;
+				}
+		
+		
+		
+		function Decrypt(word, key){
+			const iv = CryptoJS.enc.Utf8.parse('ABCDEF1234123412');
+			parseKey = CryptoJS.enc.Utf8.parse(key);
+			let encryptedHexStr = CryptoJS.enc.Hex.parse(word);
+			let srcs = CryptoJS.enc.Base64.stringify(encryptedHexStr);
+			let decrypt = CryptoJS.AES.decrypt(srcs, parseKey, {iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7});
+			let decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
+			return decryptedStr.toString();
+		
+		}
+		
+		
+		
+		function Encrypt(word, key){
+			parseKey = CryptoJS.enc.Utf8.parse(key);
+			let srcs = CryptoJS.enc.Utf8.parse(word);
+			const iv = CryptoJS.enc.Utf8.parse('ABCDEF1234123412');
+			let encrypted = CryptoJS.AES.encrypt(srcs, parseKey, {iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7});
+		
+			return encrypted.ciphertext.toString();
+		}
+		
+		</script>
+
+</body></html>

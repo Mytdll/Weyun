@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html><head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">  
+	    <title>Weyun-Login</title>
+
+	    <link href="../static/login_files/css.css" rel="stylesheet">
+	    <link href="../static/login_files/bootstrap.css" rel="stylesheet">
+	    <link href="../static/login_files/font-awesome.css" rel="stylesheet">
+	    <link href="../static/login_files/templatemo-style.css" rel="stylesheet">
+        <link href="../static/login_files/style.css" rel="stylesheet">
+        <link href="../static/login_files/color.css" rel="stylesheet">
+		<link href="../static/login_files/normalize.css" rel="stylesheet">
+
+		<link href="../static/bootstrap/css/bootstrap.css" rel="stylesheet" >
+		<script src="../static/jquery-3.3.1.js"></script>
+		<script src="../static/bootstrap/js/bootstrap.js"></script>
+
+		<script type="text/javascript" src = "../static/crypto/crypto-js.js"></script>
+		<script src="https://cdn.bootcss.com/jsencrypt/3.0.0-beta.1/jsencrypt.js"></script>
+		<script src = "../static/crypto/base64.js"></script>
+		
+	</head>
+	
+	
+	<body style="overflow:-Scroll;overflow-y:hidden;">
+		<section id="slider">
+			<div class="single-slider">
+				<div id="particles-js">
+					
+				<canvas class="particles-js-canvas-el" style="width: 100%; height: 100%;"></canvas></div>
+				<!--登陆窗口-->
+				<div class="templatemo-content-widget templatemo-login-widget white-gray-bg">
+	       			<form action="" method="post">
+						{% csrf_token %}
+						<center>
+	          				<h1 style=" font-family: 'Viner Hand ITC', cursive; font-size:30pt">welcome&nbsp;&nbsp;to&nbsp;&nbsp;weyun</h1>
+						</center>
+						<!--username输入窗-->
+	        			<div class="form-group">
+	        				<div class="input-group">
+		        				<div class="input-group-addon">
+                                    <i class="fa fa-user fa-fw"></i>
+								</div>	        		
+		              			<input name="username" id="username" style="font-family: '书体坊安景臣钢笔行书'; font-size: 20pt; color: black; height: 40px;" class="form-control" placeholder="用户名" type="text">          
+		          			</div>	
+                        </div>
+                        <br>
+						<!--passward输入窗-->
+	        			<div class="form-group">
+	        				<div class="input-group">
+		        				<div class="input-group-addon">
+                                    <i class="fa fa-key fa-fw"></i>
+								</div>	        		
+		              			<input name="password" id="password" style="font-family: '书体坊安景臣钢笔行书'; font-size: 20pt; color: black;  height: 40px;" class="form-control" placeholder="密码" type="password">      
+							  </div>
+						</div>
+						<br>
+						
+						<!--登陆button-->
+						<div class="form-group" style="text-align: center;color: red">
+							{{ info }}
+						</div>
+						<div class="button-head">		
+						</div>
+						<div class="form-group">
+							<button type="button" class="templatemo-blue-button width-100" style="font-family: '书体坊安景臣钢笔行书'; font-size: 25pt; font-weight: 700; color: black;" onclick="login(username,password)">登&nbsp;&nbsp;录</button>
+						</div>
+	        		</form>
+					<center>
+						<p style="font-family: '书体坊安景臣钢笔行书'; font-size: 15pt; color: white;">还没有账号？<strong><a href="/register" class="blue-text" style="font-family: '书体坊安景臣钢笔行书'">立即注册！</a></strong></p>
+					</center>
+	   	 		</div>
+			</div>
+		</section>
+		
+		
+				<!--js设置背景-->
+		<script src="../static/login_files/particles.js"></script>
+		<script src="../static/login_files/particle-code.js"></script>
+
+		<script>
+			function Decrypt(word, key){
+				const iv = CryptoJS.enc.Utf8.parse('ABCDEF1234123412');
+				parseKey = CryptoJS.enc.Utf8.parse(key);
+				let encryptedHexStr = CryptoJS.enc.Hex.parse(word);
+				let srcs = CryptoJS.enc.Base64.stringify(encryptedHexStr);
+				let decrypt = CryptoJS.AES.decrypt(srcs, parseKey, {iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7});
+				let decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
+				return decryptedStr.toString();
+			
+			}
+			function setCookie(name,value) 
+			{ 
+				var Days = 30; 
+				var exp = new Date(); 
+				exp.setTime(exp.getTime() + Days*24*60*60*1000); 
+				document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString() +";path=/";
+			} 
+			
+			//读取cookies 
+			function getCookie(name) 
+			{ 
+				var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+			 
+				if(arr=document.cookie.match(reg))
+			 
+					return unescape(arr[2]); 
+				else 
+					return null; 
+			} 
+				function login(username,pwd) {
+					$.ajax({
+							type:"POST",
+							url:"/login/",
+							data:{"csrfmiddlewaretoken":'{{ csrf_token}}',"username":username.value},
+			
+							dataType:"json",
+							success:function(data){
+						console.log(data);
+						pwdlength = password.textLength;
+						padPwd =  password.value + ''
+						for(;pwdlength<16;pwdlength++)
+						padPwd = padPwd + '0';	
+								console.log("IN_login.html");
+								console.log("enmasterKey = ",data.enmasterKey);
+			
+			
+								masterKey = Decrypt(data.enmasterKey, padPwd);
+								console.log("masterkey = ",masterKey);
+								
+			
+								//cookie sace masterKey
+								setCookie("masterKey",masterKey);
+			
+			
+								privateKey = Decrypt(data.enprivateKey,padPwd);
+								console.log("privateKey = ",privateKey);
+								  
+			
+								var decrypt = new JSEncrypt();
+					
+								decrypt.setPrivateKey('-----BEGIN RSA PRIVATE KEY-----'+privateKey+'-----END RSA PRIVATE KEY-----');
+								console.log('-----BEGIN RSA PRIVATE KEY-----'+privateKey+'-----END RSA PRIVATE KEY-----')
+								var token = decrypt.decrypt(data.enToken);
+								console.log('Access_Token = ', token);
+								
+						
+								console.log("token = ",token)
+								submit(token,username.value)
+                                                                 console.log("login_username = ",username.value)
+								window.location = "/";//{% url "index" %};
+							},
+							errors:function(){
+								alert('Login_Fault')
+							}
+						});
+				}
+				function sleep(d){
+				  for(var t = Date.now();Date.now() - t <= d;);
+				}
+				function submit(token,username){
+					//alert('aa');
+					$.ajax({
+							type:"post",
+							url:{% url 'checkToken' %},
+							data:{"csrfmiddlewaretoken":'{{ csrf_token}}',"token":token,"username":username},
+							dataType:"json",
+							success:function(data){
+								return data.content;
+							},
+							error:function(){
+								return -1;
+							}
+						});
+					//alert('登录成功！');
+					sleep(2000);
+				}
+			</script>
+
+</body>
+</html>

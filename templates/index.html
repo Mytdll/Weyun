@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+		<meta charset="utf-8">
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">  
+
+		<title>My-WeYun</title>
+
+
+
+        <link href="../static/login_files/css.css" rel="stylesheet">
+
+        <link href="../static/login_files/bootstrap.css" rel="stylesheet">
+
+        <link href="../static/login_files/font-awesome.css" rel="stylesheet">
+
+        <link href="../static/login_files/templatemo-style.css" rel="stylesheet">
+
+        <link href="../static/login_files/style.css" rel="stylesheet">
+
+        <link href="../static/login_files/color.css" rel="stylesheet">
+
+        <link href="../static/login_files/normalize.css" rel="stylesheet">
+
+        
+
+        <link href="../static/login_files/bootstrap.min.css" rel="stylesheet">
+
+        <link href="../static/login_files/bootstrap_002.css" rel="stylesheet">
+
+        <link href="../static/login_files/material-dashboard.css" rel="stylesheet">
+
+        <link href="../static/login_files/materialicon.css" rel="stylesheet">
+
+        <link href="../static/login_files/roboto.css" rel="stylesheet" type="text/css">
+
+        <link href="../static/login_files/font-awesome_002.css" rel="stylesheet">
+
+        <link href="../static/login_files/jquery.css" rel="stylesheet">
+
+        <link href="../static/login_files/icon.css" rel="stylesheet">
+
+
+
+        <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.css">
+
+        <link rel="stylesheet" href="../static/index.css">
+
+        <link rel="stylesheet" href="../static/fontawesome/css/font-awesome.css">
+
+		<script src="../static/jquery-3.3.1.js"></script>
+
+        <script src="../static/bootstrap/js/bootstrap.js"></script>
+
+        <script src="../static/index.js"></script>
+
+        <script src="../static/jquery.cookie.js"></script>
+
+        <script src="../static/RSA.js"></script>
+
+        <script type="text/javascript" src="../static/aes.js"></script>
+
+        <script type="text/javascript" src="../static/pad-nopadding.js"></script>
+
+        <script type="text/javascript" src="../static/enc-utf16-min.js"></script>
+
+        <script type="text/javascript" src="../static/enc-base64-min.js"></script>
+
+        <script type="text/javascript" src="../static/mode-cfb.js"></script>
+
+        <script type="text/javascript" src="../static/mode-cfb-min.js"></script>
+
+        <script src="../static/crypto/md5.js"></script>
+
+	</head>
+
+	<body style="overflow:-Scroll;overflow-y:hidden; text-align: center; height: 100%; width: 100%">
+
+		<section id="slider">
+
+			<div class="single-slider">
+
+				<div id="particles-js">
+
+                </div>
+
+                <div class="col-md-12">
+
+                    <!--顶部标题-->
+
+                    <div class="templatemo-flex-row black-bg">
+
+                        <div class="templatemo-sidebar1">
+
+                                <header class="templatemo-site-header">
+
+                                        <h1 style="font-family: 'Viner Hand ITC','书体坊安景臣钢笔行书'; color:#07E7FC;font-size: '35px'">Welcome&nbsp;&nbsp;to&nbsp;&nbsp;Weyun,&nbsp;&nbsp;{{ username }}</h1>
+
+                               </header>
+
+                        </div>
+
+                    </div>
+
+                    <!--内容-->
+
+                    <div class="templatemo-flex-row black-bg">
+
+                        <!--左侧导航栏-->
+
+                        <div class="templatemo-sidebar2">
+
+                            <nav  class="templatemo-left-nav navbar navbar-transparent" role="navigation">
+
+                                    <ul>
+
+                                    <li role="presentation" class="active"><a style="font-family:'书体坊安景臣钢笔行书'; color:#03AAC7; font-size:30px;" href="/"><i class="fa fa-file-o fa-lg"></i> 所有文件</a></li>
+
+                                    <li role="presentation"><a style="font-family:'书体坊安景臣钢笔行书'; color:#03AAC7; font-size:30px;" href="javascript:void(0)" class="classify_link" id="doc">
+
+                                        <i class="fa fa-file-word-o fa-lg" aria-hidden="true"></i> 文档</a></li>
+
+                                    <li role="presentation"><a style="font-family:'书体坊安景臣钢笔行书'; color:#03AAC7; font-size:30px;" href="javascript:void(0)" class="classify_link" id="img">
+
+                                        <i class="fa fa-file-photo-o fa-lg" aria-hidden="true"></i> 图片</a></li>
+
+                                    <li role="presentation"><a style="font-family:'书体坊安景臣钢笔行书'; color:#03AAC7; font-size:30px;" href="javascript:void(0)" class="classify_link" id="video">
+
+                                        <i class="fa fa-file-video-o fa-lg" aria-hidden="true"></i> 影音</a></li>
+
+                                    <li role="presentation"><a style="font-family:'书体坊安景臣钢笔行书'; color:#03AAC7; font-size:30px;" href="javascript:void(0)" class="classify_link" id="procedure">
+
+                                        <i class="fa fa-android fa-lg" aria-hidden="true"></i> 应用</a></li>
+
+                                    <li role="presentation"><a style="font-family:'书体坊安景臣钢笔行书'; color:#03AAC7; font-size:30px;" href="javascript:void(0)" class="classify_link" id="others">其他</a></li>
+
+                                </ul>
+
+                           </nav>
+
+                        </div>
+
+                        <!--右侧按钮-->
+
+                        <div class="templatemo-sidebar3" >
+
+                            <div class="row" style="margin: 20px; margin-left: 0px; height: 75px; vertical-align: middle;">
+
+                                <dic class="col-sm-6" style="margin-top: 10px;">
+
+                                    <ol class="breadcrumb" style="font-size:27px; background-color:#00bcd4; border-radius:20px">
+
+                                        {% for breadcrumb in breadcrumb_list %}
+
+                                            {% if not forloop.last %}
+
+                                                <li><a href="/folder/?pdir={{ breadcrumb.uri }}" style="font-family: '书体坊安景臣钢笔行书','Viner Hand ITC'; color: black">{{ breadcrumb.tag }}</a></li>
+
+                                            {% else %}
+
+                                                <li class="active" style="font-family: '书体坊安景臣钢笔行书'; color: black"><span id="pwd" hidden>{{ breadcrumb.uri }}</span>{{ breadcrumb.tag }}
+
+                                                </li>
+
+                                            {% endif %}
+
+                                        {% endfor %}
+
+                                    </ol>
+
+                                </dic>
+
+                                <div class="col-sm-2" style="vertical-align: middle">
+
+                                    <!--上传文件模态框开始-->
+
+                                        <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-info btn-sm" style="font-family: '书体坊安景臣钢笔行书'; font-size: 30px;">上传文件
+
+                                        </button>
+
+                                    <!-- Modal -->
+
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+                                        <div class="modal-dialog" role="document">
+
+                                            <div class="modal-content" style="background-color: rgba(0,0,0,0.4)">
+
+                                                <div class="modal-header">
+
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white"><span aria-hidden="true" style="color: white">&times;</span>
+
+                                                    </button>
+
+                                                    <h4 class="modal-title" id="myModalLabel" style="font-family: '书体坊安景臣钢笔行书'; font-size: 50px; color: #07E7FC;">上传文件</h4>
+
+                                                </div>
+
+                                                <div class="modal-body" style="height: 100px; width: 80%; margin-left: 10%; margin-right: 10%">
+
+                                                    <a href='javascript:void(0);' class="blueButton" style="font-family: '书体坊安景臣钢笔行书'; font-size: 30px; color: black; background-color: #00bcd4">选择文件</a>
+
+                                                    <input type="file" class="myFileUpload" name="file" id="file">
+
+                                                    <div class="show">
+
+                                                    </div>
+
+                                                    <div class="progress" hidden style="margin-top: 80px">
+
+                                                        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%; background-color: #00bcd4;" id="prog">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="modal-footer" style="height: 50px; width: 70%; margin-left: 15%; margin-right: 15%; margin-top: 30px; margin-bottom: 20px">
+
+                                                    <button type="button" class="btn btn-danger pull-left" data-dismiss="modal" style="width:45%; font-family: '书体坊安景臣钢笔行书'; font-size: 30px; color: black">关 闭
+
+                                                    </button>
+
+                                                    <button type="button" id="upload" class="btn btn-info pull-right" style="width:45%; font-family: '书体坊安景臣钢笔行书'; font-size: 30px; color: black" onclick="upload(file)">上 传
+
+                                                    </button>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!--上传文件模态框结束-->
+
+                                </div>
+
+                                <div class="col-sm-2" style="vertical-align: middle">								
+                                    
+									<!--新建文件夹模态框开始-->
+									
+									<button type="button" data-toggle="modal" data-target="#myModal2" class="btn btn-info btn-sm" style="font-family: '书体坊安景臣钢笔行书'; font-size: 30px">新建文件夹
+                                    
+									</button>
+                                    
+									<!-- Modal -->
+
+                                    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+                                        <div class="modal-dialog" role="document">
+
+                                            <div class="modal-content" style="background-color: rgba(0,0,0,0.4)">
+
+                                                <div class="modal-header">
+
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white"><span aria-hidden="true" style="color: white">&times;</span>
+
+                                                    </button>
+
+                                                    <h4 class="modal-title" id="myModalLabel" style="font-family: '书体坊安景臣钢笔行书'; font-size: 50px; color: #07E7FC;">新建文件夹</h4>
+
+                                                </div>
+
+                                                <form action="/mkdir/" method="get">
+
+                                                    <div class="modal-body" style="height: 50px; width: 80%;margin-left: 10%; margin-right: 10%; text-align:center">
+
+                                                        <div class="input-group">
+
+                                                            <input type="text" id="absdir" name="pwd" hidden>
+
+                                                            <script>
+
+                                                                var dir = $('#pwd').text();
+
+                                                                $('#absdir').val(dir);
+
+                                                            </script>
+
+                                                            <input type="text" name="folder_name" style="font-family: '书体坊安景臣钢笔行书','Viner Hand ITC'; font-size: 30px; color: black; background-color: #07E7FC; width: 205%; height: 45px; border-radius: 5px" class="form-control" placeholder="输入文件夹名称" aria-describedby="basic-addon1">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="modal-footer" style="height: 50px; width: 70%; margin-left: 15%; margin-right: 15%; margin-top: 30px; margin-bottom: 20px">
+
+                                                        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal" style="width:45%; font-family: '书体坊安景臣钢笔行书'; font-size: 30px; color: black">关 闭
+
+                                                        </button>
+
+                                                        <button type="submit" value="新 建" class="btn btn-info pull-right" style="width:45%; font-family: '书体坊安景臣钢笔行书'; font-size: 30px; color: black">新 建</button>
+
+                                                    </div>
+
+                                                </form>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!--新建文件夹模态框开始-->
+									
+                                </div>
+
+                                <div class="col-sm-2" style="vertical-align: middle">
+
+                                    <!--注销-->
+
+                                    <button type="button" onclick="location.href='/logout/'" class="btn btn-info btn-sm" style="font-family: '书体坊安景臣钢笔行书'; font-size: 30px;">退&nbsp;&nbsp;出
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                            <div style="height:480px; width:100%; margin: 20px; background-color: rgba(0, 0, 0, 0.2); margin-top: 20px;margin-bottom: 40px;margin-left: 0px; margin-right: 20px;position: relative; overflow: hidden;">
+
+                                <div class="row" style="width: 103%; height: 500px; right:-1%; overflow-x: hidden; overflow-y: scroll; position: absolute;">
+
+                                    <table class="table table-hover" id="myTable" style="width: 96%; margin:2%;">
+
+                                        <thead>
+
+                                            <tr style="font-size: 30px; color: #07E7FC;">
+
+                                                <th style="font-size: 30px; font-family:'书体坊安景臣钢笔行书'; width: 40%">文件名</th>
+
+                                                <th style="font-size: 30px; font-family:'书体坊安景臣钢笔行书'; width: 15%">大 小</th>
+
+                                                <th style="font-size: 30px; font-family:'书体坊安景臣钢笔行书'; width: 20%">时 间</th>
+
+                                                <th style="font-size: 30px; font-family:'书体坊安景臣钢笔行书'; width: 25%">操 作</th>
+
+                                            </tr>
+
+                                        </thead>
+
+                                        <tbody style="font-size: 20px;font-weight:600; font-family:'书体坊安景臣钢笔行书'; color:#07E7FC;">
+
+                                        {% for file in index_list %}
+
+                                            <tr>
+
+                                                {% if file.is_file %}
+
+                                                    <td style="text-align: left; width: 40%" >
+
+                                                        <a style="font-family:'书体坊安景臣钢笔行书'; color:#07E7FC;">
+
+                                                            <i class="fa fa-file fa-lg">
+
+                                                            </i> {{ file.file_name }}
+
+                                                        </a>
+
+                                                    </td>
+
+                                                {% else %}
+
+                                                    <td style="text-align: left; width: 40%" >
+
+                                                        <a href="/folder/?pdir={{ file.belong_folder }}{{ file.folder_name }}" class="dir" name="" style="font-family:'书体坊安景臣钢笔行书';	 color:#07E7FC;" >
+
+                                                            <i class="fa fa-folder-o fa-lg">
+
+                                                            </i> {{ file.folder_name }}
+
+                                                        </a>
+
+                                                    </td>
+
+                                                {% endif %}
+
+                                                {% if file.is_file %}
+
+                                                    <td style="font-family:'书体坊安景臣钢笔行书'; width: 15%" >{{ file.file_size }}</td>
+
+                                                {% else %}
+
+                                                    <td style="font-family:'书体坊安景臣钢笔行书';width: 15%" >---</td>
+
+                                                {% endif %}
+
+                                                <td style="font-family:'书体坊安景臣钢笔行书'; width: 20%" >{{ file.update_time }}</td>
+
+                                                {% if file.is_file %}
+
+                                                    <td  style="width: 25%; font-family:'书体坊安景臣钢笔行书'">
+
+                                                        <a class="btn btn-info" onclick="down('{{file.file_path}}')" style="font-family:'书体坊安景臣钢笔行书'">
+
+                                                            <i class="fa fa-cloud-download fa-lg" aria-hidden="true" onclick="down('{{ file.file_path }}')"></i>下 载
+
+                                                        </a>
+
+                                                    
+
+
+
+                                                        <a class="btn btn-danger" id="deletefile_{{ file.id }}" style="font-family:'书体坊安景臣钢笔行书'">
+
+                                                            <i class="fa fa-trash fa-lg" aria-hidden="true">
+
+                                                            </i> 删 除
+
+                                                        </a>
+
+                                                        <script>
+
+                                                            var pwd = $('#pwd').text();
+
+                                                            var folder_name = '{{ file.folder_name }}';
+
+                                                            $('#deletefile_{{ file.id }}').attr('href', '/delete_file/?pwd=' + pwd + '&file_path=' + '{{ file.file_path }}');
+
+                                                        </script>
+
+                                                    </td>
+
+                                                {% else %}
+
+                                                    <td >
+
+                                                        <button class="btn btn-info" style="font-family:'书体坊安景臣钢笔行书'">
+
+                                                            <i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> 下 载
+
+                                                        </button>
+
+                                                        <!---->
+
+                                                        <a class=" btn btn-danger" onclick="firm()" id="deletefolder_{{ file.folder_name }}" style="font-family:'书体坊安景臣钢笔行书'">
+
+                                                            <i class="fa fa-trash fa-lg" aria-hidden="true"></i> 删 除
+
+                                                        </a>                                    
+
+                                                        <script>
+
+                                                            function firm() {
+
+                                                                var pwd = $('#pwd').text();
+
+                                                                var folder_name = '{{ file.folder_name }}';
+
+                                                                $('#deletefolder_{{ file.folder_name }}').attr('href', '/delete_folder/?pwd=' + pwd + '&folder_name=' + folder_name);
+
+                                                            }
+
+                                                        </script>
+
+                                                    </td>
+
+                                                {% endif %}
+
+                                            </tr>
+
+                                        {% endfor %}
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                            </div>  
+
+
+
+                                <!--右侧文件表格结束-->
+
+                        </div>
+
+                    </div>
+
+                </div> 
+
+            </div>
+
+		</section>
+
+        		
+
+		<!--js设置背景-->
+
+		<script src="../static/login_files/particles.js"></script>
+
+		<script src="../static/login_files/particle-code.js"></script>
+
+		<script>
+
+			function fake_click(obj) {
+
+				var ev = document.createEvent("MouseEvents");
+
+				ev.initMouseEvent(
+
+					"click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null
+
+				);
+
+				obj.dispatchEvent(ev);
+
+			}
+
+
+
+			function save(name, data) {
+
+				var urlObject = window.URL || window.webkitURL || window;
+
+
+
+				var downloadData = new Blob([data]);
+
+
+
+				var save_link = document.createElementNS("http://www.w3.org/1999/xhtml", "a")
+
+				save_link.href = urlObject.createObjectURL(downloadData);
+
+				save_link.download = name;
+
+				fake_click(save_link);
+
+			}
+
+
+
+		function Decrypt(word, key){
+
+			const iv = CryptoJS.enc.Utf8.parse('ABCDEF1234123412');
+
+			parseKey = CryptoJS.enc.Utf8.parse(key);
+
+			let encryptedHexStr = CryptoJS.enc.Hex.parse(word);
+
+			let srcs = CryptoJS.enc.Base64.stringify(encryptedHexStr);
+
+			let decrypt = CryptoJS.AES.decrypt(srcs, parseKey, {iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7});
+
+			let decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
+
+			return decryptedStr.toString();
+
+			}
+		
+
+
+		function randomString(len){
+
+				len = len || 32;
+
+				var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+
+		　　      var maxPos = $chars.length;
+
+				var randomString = '';
+
+				for (i = 0; i < len; i++) {
+
+					randomString += $chars.charAt(Math.floor(Math.random() * maxPos));
+
+					}
+
+				return randomString;
+
+				}
+
+
+
+
+
+		function Encrypt(word, key){
+
+			parseKey = CryptoJS.enc.Utf8.parse(key);
+
+			let srcs = CryptoJS.enc.Utf8.parse(word);
+
+			const iv = CryptoJS.enc.Utf8.parse('ABCDEF1234123412');
+
+			let encrypted = CryptoJS.AES.encrypt(srcs, parseKey, {iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7});
+
+
+
+			return encrypted.ciphertext.toString();
+
+			}
+
+
+
+		function setCookie(name,value) 
+
+		{ 
+
+			var Days = 30; 
+
+			var exp = new Date(); 
+
+			exp.setTime(exp.getTime() + Days*24*60*60*1000); 
+
+			document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString()+";path=/"; 
+
+			} 
+
+
+
+		//读取cookies 
+
+		function getCookie(name) {
+
+		 var name = name + "=";
+
+		//  console.log("cookie = ",document.cookie)
+
+		  var decodedCookie = decodeURIComponent(document.cookie);
+
+		//  console.log("ccc = ",decodedCookie)
+
+		  var ca = decodedCookie.split(';');
+
+		  console.log("ca = ",ca)
+
+		  for(var i = 0; i <ca.length; i++) {
+
+			var c = ca[i];
+
+			while (c.charAt(0) == ' ') {
+
+			  c = c.substring(1);
+
+		//      console.log("c[i] = ",c)
+
+			}
+
+			if (c.indexOf(name) == 0) {
+
+			  return c.substring(name.length, c.length);
+
+			}
+
+		  }
+
+		  return "";
+
+		}
+
+
+
+		function encryption(fileKey, enfileKey){
+
+			//读取文件
+
+				console.log("filekey:",fileKey)
+
+			var file = document.getElementById("file").files[0];
+
+			var fileName = file.name
+
+			var reader = new FileReader();
+
+			//将文件以arraybuffer形式读入页面
+
+			reader.readAsArrayBuffer(file);
+
+			reader.onload=function(e){
+
+				var result=document.getElementById("result");
+
+				//分块加密文件;自定义块长度
+
+				var blk = 1024;//blk=1024B
+
+				var enc = encryptabbyblock(this.result,blk, fileKey);
+
+				console.log("encode:",enc);
+
+				var array = Array.from(enc)
+
+				//console.log("array = ",array)
+
+
+
+				console.log("enfilekey:",enfileKey)
+
+					//console.log("enc:",enc)
+
+			var formData = new FormData();
+
+
+
+				formData.append("file", $("#file")[0].files[0]);
+
+			formData.append("enfile", enc);
+
+
+
+				formData.append("name", fileName);
+
+
+
+			formData.append("enfileKey", enfileKey);
+
+
+
+				formData.append('file_path', $('#pwd').text());
+
+
+
+			$.ajax({
+
+
+
+						url: "/upload_file/",
+
+						type: "POST",
+
+						dataType: "json",
+
+						data: formData,
+
+						headers: {"X-CSRFToken": $.cookie('csrftoken')},
+
+				contentType: false, //必须false才会自动加上正确的Content-Type
+
+						processData: false,  //必须false才会避开jQuery对 formdata 的默认处理
+
+
+
+						//data:{"csrfmiddlewaretoken":'{{ csrf_token}}',"enfile":enc,"enfileKey":enfileKey,"fileName":fileName},
+
+						
+
+					});
+
+			   // dosave(enc,"text/latex","enc.txt");//dosave()将加密文件存储为enc.txt
+
+			}
+
+		}
+
+
+
+		function encryptabbyblock(arraybuffer,blk,fileKey)
+
+		{
+
+			var key = CryptoJS.enc.Latin1.parse(fileKey);
+
+			var iv =    CryptoJS.enc.Latin1.parse('1234567890123456');
+
+			var len=arraybuffer.byteLength;
+
+		   
+
+			var n = Math.floor(len/blk);
+
+			var encryption = new Uint8Array(arraybuffer.byteLength);
+
+			for(var i=0;i<=n;i++)
+
+			{
+
+				var end = (i<n)?blk:len%blk;
+
+				var new_bufer = new ArrayBuffer(end);
+
+				new_bufer = arraybuffer.slice(i*blk,i*blk+end);  
+
+
+
+				var barray = new Uint8Array(new_bufer);
+
+				var wbuf= CryptoJS.enc.u8array.parse(barray);
+
+				var encrypted = CryptoJS.AES.encrypt(wbuf, key, {iv:iv,mode:CryptoJS.mode.CFB, padding: CryptoJS.pad.NoPadding});//NoPadding Pkcs7
+
+				console.log('wbuf=',wbuf)
+
+				console.log('key=',key)
+
+				console.log('encrypted=',encrypted)
+
+				var encrypted_unit8arr = CryptoJS.enc.u8array.stringify(encrypted.ciphertext);
+
+				encryption.set(encrypted_unit8arr,i*blk);
+
+				
+
+			}
+
+			console.log(encryption)
+
+			return encryption;
+
+		}
+
+
+
+		function decryptabbyblock(arraybuffer,blk, fileKey)
+
+		{
+
+			var key = CryptoJS.enc.Latin1.parse(fileKey);
+
+			var iv =    CryptoJS.enc.Latin1.parse('1234567890123456');
+
+			var len=arraybuffer.byteLength;
+
+			var n = Math.floor(len/blk);
+
+			var encryption = new Uint8Array(arraybuffer.byteLength);
+
+			for(var i=0;i<=n;i++)
+
+			{
+
+				var end = (i<n)?blk:len%blk;
+
+				var new_bufer = new ArrayBuffer(end);
+
+				new_bufer = arraybuffer.slice(i*blk,i*blk+end);  
+
+				var barray = new Uint8Array(new_bufer);
+
+				
+
+				var wbuf= CryptoJS.enc.u8array.parse(barray);
+
+				var b64 = CryptoJS.enc.Base64.stringify(wbuf);
+
+				var decrypted = CryptoJS.AES.decrypt(b64, key, {iv:iv,mode:CryptoJS.mode.CFB, padding: CryptoJS.pad.NoPadding});
+
+				var decrypted_unit8arr = CryptoJS.enc.u8array.stringify(decrypted);
+
+				encryption.set(decrypted_unit8arr,i*blk);
+
+			}
+
+			return encryption;
+
+		}
+
+
+
+		function rh(word1,word2)
+
+		{
+
+			if(word1=='')
+
+			{
+
+
+
+				return word2;
+
+			}
+
+			else
+
+			{
+
+				var uw1 = word1.words;
+
+				var uw2 = word2.words;
+
+
+
+				var u8 = new Uint8Array(word1.sigBytes+word2.sigBytes);
+
+
+
+				//var i=0;
+
+				for (var i = 0; i < word1.sigBytes; i++) {
+
+						var byte = (uw1[i >>> 2] >>> (24 - (i % 4) * 8)) & 0xff;
+
+						u8[i]=byte;
+
+					}
+
+				for (var j = 0; j < word2.sigBytes; j++) {
+
+						var byte = (uw2[j >>> 2] >>> (24 - (j % 4) * 8)) & 0xff;
+
+						u8[i+j]=byte;
+
+					}
+
+				return CryptoJS.enc.u8array.parse(u8);
+
+			} 
+
+		}
+
+		function dosave(value, type, name) {
+
+			var blob;
+
+			if (typeof window.Blob == "function") {
+
+				blob = new Blob([value], {type: type});
+
+			} else {
+
+				var BlobBuilder = window.BlobBuilder || window.MozBlobBuilder || window.WebKitBlobBuilder || window.MSBlobBuilder;
+
+				var bb = new BlobBuilder();
+
+				bb.append(value);
+
+				blob = bb.getBlob(type);
+
+			}
+
+			var URL = window.URL || window.webkitURL;
+
+			var bloburl = URL.createObjectURL(blob);
+
+			var anchor = document.createElement("a");
+
+			console.log('abcaca');
+
+			if ('download' in anchor) {
+
+				anchor.style.visibility = "hidden";
+
+				anchor.href = bloburl;
+
+				anchor.download = name;
+
+				document.body.appendChild(anchor);
+
+				var evt = document.createEvent("MouseEvents");
+
+				evt.initEvent("click", true, true);
+
+				anchor.dispatchEvent(evt);
+
+				document.body.removeChild(anchor);
+
+			console.log('aaa');
+
+			} else if (navigator.msSaveBlob) {
+
+				navigator.msSaveBlob(blob, name);
+
+				console.log('bbb');
+
+			} else {
+
+				location.href = bloburl;
+
+			console.log('ccc');
+
+			}
+
+
+
+		}
+
+
+
+			function upload(file){
+
+				var _fileKey = Math.random()*10000000000000000;
+
+				var fileKey = _fileKey.toString();
+
+				console.log("filekey_generation:",fileKey)
+
+
+
+		//        console.log("cookie = ",document.cookie)
+
+				var masterKey = getCookie("masterKey")	
+
+			//var enmasterKey = Encrypt(masterKey, padPwd);
+
+				//console.log("enmasterKey=",enmasterKey);
+
+
+
+				var enfileKey = Encrypt(fileKey, masterKey);
+
+		//        var enfile = CryptoJS.AES.encrypt(file.read(),masterKey);
+
+		//        var enfileKey=CryptoJS.AES.encrypt(fileKey,masterKey);
+
+				var fileName = file.name
+
+		//        var fileSize = enfile.length
+
+			encryption(fileKey, enfileKey);
+
+
+
+			}
+
+
+
+		function down(file_path){
+
+			$.ajax({
+
+						type:"POST",
+
+						url:"/download_file/",
+
+						data:{"csrfmiddlewaretoken":'{{ csrf_token}}','file_path':file_path },
+
+						dataType:"json",
+
+				success:function(data){
+
+					//alert(123);
+
+					console.log(data);
+
+							masterKey = getCookie('masterKey');
+
+							fileKey = Decrypt(data.enfileKey,masterKey);
+
+					console.log(fileKey);
+
+							fileName = data.fileName;
+
+							const blk = 1024;
+
+				console.log(data.enfile);
+
+				text = data.enfile;
+
+				var array = text.split(",");
+
+					var result = new Uint8Array(array.length);
+
+					for(var i = 0; i<array.length;i++)
+
+					result[i]=array[i];
+
+
+
+					console.log(array);
+
+					console.log(result);
+
+							var dec = decryptabbyblock(result,blk,fileKey);
+
+					dosave(dec,"text/latex",fileName);//dosave()将加密文件存储
+
+						console.log("dec=",dec);
+
+						},
+
+						error:function(){
+
+							alert("download_failure");
+
+						}
+
+			});
+
+		}
+
+		</script>            
+
+
+
+
+
+    </body>
+
+</html>
